@@ -54,7 +54,7 @@
     - name: Copy the DHS certificates to the appropriate directory
       ansible.builtin.copy:
         dest: "{{ certificate_dir }}"
-        mode: 0600
+        mode: 0400
         remote_src: yes
         src: "{{ item }}"
       loop: "{{ find_result | community.general.json_query('files[*].path') }}"
