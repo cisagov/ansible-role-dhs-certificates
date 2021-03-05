@@ -9,11 +9,20 @@ at the OS level.
 
 ## Requirements ##
 
-None.
+This role makes use of the [`community.general.json_query` Ansible
+filter](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#selecting-json-data-json-queries),
+which requires that the [`jmespath` Python
+package](https://pypi.org/project/jmespath/) be installed on the local
+host.
 
 ## Role Variables ##
 
-None.
+* `cert_url` - the URL where the DHS certificate p7b bundle can be
+  downloaded.  Defaults to "https://pki.treas.gov/dhsca_fullpath.p7b".
+* `single_cert_filename_prefix` - the prefix to use when creating the
+  individual certificate files extracted from the DHS certificate p7b
+  bundle.  If the prefix is "zz-" then individual certificate files
+  will be named "zz-00", "zz-01", etc.  Defaults to "dhs-cert-".
 
 ## Dependencies ##
 
