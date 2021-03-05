@@ -1,0 +1,12 @@
+---
+# The necessary packages to install
+package_names:
+  - ca-certificates
+  - openssl
+
+# The directory where trusted certificates are to be copied
+certificate_dir: /etc/pki/ca-trust/source/anchors
+
+# The command used to update the CA trust, including the full path to
+# the executable
+update_ca_trust_command: /bin/update-ca-trust extract
