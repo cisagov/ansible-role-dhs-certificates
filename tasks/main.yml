@@ -23,7 +23,7 @@
         url: "{{ cert_url }}"
 
     - name: Massage the DHS certificate bundle into the desired format
-      command:
+      ansible.builtin.command:
         cmd: >
           /usr/bin/openssl pkcs7 -print_certs
           -inform der -in /tmp/{{ p7b_filename }}
@@ -33,7 +33,7 @@
     # Debian is pretty picky about having a single certificate per
     # file
     - name: Split the cert file into multiple certs
-      command:
+      ansible.builtin.command:
         chdir: /tmp
         cmd: >
           /usr/bin/csplit --prefix {{ single_cert_filename_prefix }}
