@@ -1,2 +1,62 @@
 ---
-# tasks file for skeleton
+- name: Load var file specific to the OS type
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}_{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      paths:
+        - "{{ role_path }}/vars"
+
+- name: Install required system packages
+  ansible.builtin.package:
+    name: "{{ package_names }}"
+
+- name: Grab and pre-process the DHS certificate bundle
+  block:
+    - name: Grab DHS certificate bundle
+      ansible.builtin.get_url:
+        dest: /tmp/{{ p7b_filename }}
+        mode: 0600
+        url: "{{ cert_url }}"
+
+    - name: Massage the DHS certificate bundle into the desired format
+      ansible.builtin.command:
+        cmd: >
+          /usr/bin/openssl pkcs7 -print_certs
+          -inform der -in /tmp/{{ p7b_filename }}
+          -out /tmp/{{ cer_filename }}
+        creates: /tmp/{{ cer_filename }}
+
+    # Debian is pretty picky about having a single certificate per
+    # file
+    - name: Split the cert file into multiple certs
+      ansible.builtin.command:
+        chdir: /tmp
+        cmd: >
+          /usr/bin/csplit --prefix {{ single_cert_filename_prefix }}
+          --elide-empty-files --quiet
+          /tmp/{{ cer_filename }} /subject/ "{*}"
+        creates: /tmp/{{ single_cert_filename_prefix }}00
+
+- name: Copy the DHS certificates to the appropriate directory
+  block:
+    - name: Collect the names of all the certificate files that were previously split out
+      ansible.builtin.find:
+        paths:
+          - /tmp
+        patterns:
+          - "{{ single_cert_filename_prefix }}*"
+      register: find_result
+
+    - name: Copy the DHS certificates to the appropriate directory
+      ansible.builtin.copy:
+        dest: "{{ certificate_dir }}"
+        mode: 0400
+        remote_src: yes
+        src: "{{ item }}"
+      loop: "{{ find_result | community.general.json_query('files[*].path') }}"
+      notify:
+        - Update certificate trust
