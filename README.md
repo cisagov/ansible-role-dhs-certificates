@@ -24,6 +24,13 @@ host.
   bundle.  If the prefix is "zz-" then individual certificate files
   will be named "zz-00", "zz-01", etc.  Defaults to "dhs-cert-".
 
+<!--
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| optional_variable | Describe its purpose. | `default_value` | No |
+| required_variable | Describe its purpose. | n/a | Yes |
+-->
+
 ## Dependencies ##
 
 None.
