@@ -19,7 +19,9 @@ host.
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
+| cer\_filename | The filename to use for the DHS certificate cer bundle (translated from the p7b bundle). | `dhsca.cer` | No |
 | cert\_url | The URL where the DHS certificate p7b bundle can be downloaded. | `https://pki.treas.gov/dhsca_fullpath.p7b` | No |
+| p7b\_filename | The filename to use for the DHS certificate p7b bundle after it is downloaded from the cert\_url. | `dhsca.p7b` | No |
 | single\_cert\_filename\_prefix | The prefix to use when creating the individual certificate files extracted from the DHS certificate p7b bundle.  If the prefix is "zz-" then individual certificate files will be named "zz-00", "zz-01", etc. | `dhs-cert-` | No |
 
 ## Dependencies ##
