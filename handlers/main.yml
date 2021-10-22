@@ -1,3 +1,4 @@
 ---
 - name: Update certificate trust
-  ansible.builtin.shell: "{{ update_ca_trust_command }}"
+  ansible.builtin.command:
+    cmd: "{{ update_ca_trust_command }}"
