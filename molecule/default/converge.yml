@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  roles:
-    - role: ansible-role-dhs-certificates
+  tasks:
+    - name: Include ansible-role-dhs-certificates
+      ansible.builtin.include_role:
+        name: ansible-role-dhs-certificates
