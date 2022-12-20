@@ -1,8 +1,7 @@
 # ansible-role-dhs-certificates #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-dhs-certificates/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-dhs-certificates/actions)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/ansible-role-dhs-certificates.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-dhs-certificates/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/ansible-role-dhs-certificates.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-dhs-certificates/context:python)
+[![CodeQL](https://github.com/cisagov/ansible-role-dhs-certificates/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-dhs-certificates/actions/workflows/codeql-analysis.yml)
 
 This is an Ansible role for configuring trust of DHS CA certificates
 at the OS level.
@@ -36,8 +35,10 @@ Here's how to use it in a playbook:
 - hosts: all
   become: yes
   become_method: sudo
-  roles:
-    - dhs_certificates
+  tasks:
+    - name: Install and trust DHS certificates
+      ansible.builtin.include_role:
+        name: dhs_certificates
 ```
 
 ## Contributing ##
