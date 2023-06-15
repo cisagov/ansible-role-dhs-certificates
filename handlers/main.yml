@@ -1,4 +1,4 @@
 ---
 - name: Update certificate trust
   ansible.builtin.command:
-    cmd: "{{ update_ca_trust_command }}"
+    cmd: "{{ update_ca_trust_command }}" # noqa 301
