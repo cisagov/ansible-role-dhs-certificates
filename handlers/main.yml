@@ -2,3 +2,6 @@
 - name: Update certificate trust
   ansible.builtin.command:
     cmd: "{{ update_ca_trust_command }}"
+  # We do not currently have a better way to confirm
+  # that the command has done something or not
+  changed_when: true
