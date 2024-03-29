@@ -55,7 +55,7 @@
       ansible.builtin.copy:
         dest: "{{ certificate_dir }}"
         mode: 0400
-        remote_src: yes
+        remote_src: true
         src: "{{ item }}"
       loop: "{{ find_result | community.general.json_query('files[*].path') }}"
       notify:
