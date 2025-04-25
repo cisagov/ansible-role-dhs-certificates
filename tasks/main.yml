@@ -19,7 +19,7 @@
     - name: Grab DHS certificate bundle
       ansible.builtin.get_url:
         dest: /tmp/{{ p7b_filename }}
-        mode: 0600
+        mode: u=rw,g=,o=
         url: "{{ cert_url }}"
 
     - name: Massage the DHS certificate bundle into the desired format
@@ -54,7 +54,7 @@
     - name: Copy the DHS certificates to the appropriate directory
       ansible.builtin.copy:
         dest: "{{ certificate_dir }}"
-        mode: 0400
+        mode: u=r,g=,o=
         remote_src: true
         src: "{{ item }}"
       loop: "{{ find_result | community.general.json_query('files[*].path') }}"
