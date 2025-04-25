@@ -43,7 +43,8 @@
 
 - name: Copy the DHS certificates to the appropriate directory
   block:
-    - name: Collect the names of all the certificate files that were previously split out
+    - name: >-
+        Collect the names of all the certificate files that were previously split out
       ansible.builtin.find:
         paths:
           - /tmp
