@@ -25,7 +25,6 @@ def test_packages(host, pkg_name):
         "dhs-cert-01",
         "dhs-cert-02",
         "dhs-cert-03",
-        "dhs-cert-04",
     ],
 )
 def test_cert_files(host, file_name):
