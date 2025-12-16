@@ -21,6 +21,11 @@
         dest: /tmp/{{ p7b_filename }}
         mode: u=rw,g=,o=
         url: "{{ cert_url }}"
+        # Debian Buster and Bullseye have an ancient version of
+        # ca-certificates and can't actually verify the certificate
+        # used by the cert_url HTTPS server.
+        validate_certs: >-
+          {{ ansible_distribution_release not in ['buster', 'bullseye'] }}
 
     - name: Massage the DHS certificate bundle into the desired format
       ansible.builtin.command:
