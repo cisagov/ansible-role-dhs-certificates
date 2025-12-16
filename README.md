@@ -1,6 +1,7 @@
 # ansible-role-dhs-certificates #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-dhs-certificates/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-dhs-certificates/actions)
+[![License](https://img.shields.io/github/license/cisagov/ansible-role-dhs-certificates)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/ansible-role-dhs-certificates/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-dhs-certificates/actions/workflows/codeql-analysis.yml)
 
 This is an Ansible role for configuring trust of DHS CA certificates
