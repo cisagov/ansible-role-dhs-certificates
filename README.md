@@ -18,7 +18,7 @@ host.
 ## Role Variables ##
 
 | Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
+| -------- | ----------- | ------- | -------- |
 | cer\_filename | The filename to use for the DHS certificate cer bundle (translated from the p7b bundle). | `dhsca.cer` | No |
 | cert\_url | The URL where the DHS certificate p7b bundle can be downloaded. | `https://pki.treas.gov/dhsca_fullpath.p7b` | No |
 | p7b\_filename | The filename to use for the DHS certificate p7b bundle after it is downloaded from `cert\_url`. | `dhsca.p7b` | No |
